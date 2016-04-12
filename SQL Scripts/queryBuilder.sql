@@ -44,7 +44,7 @@ CREATE TABLE `traffic_flow` (
 
 LOCK TABLES `traffic_flow` WRITE;
 /*!40000 ALTER TABLE `traffic_flow` DISABLE KEYS */;
-INSERT INTO `traffic_flow` VALUES (1391924360220000,'12.1.1.2','project2:virtual-network2',1,9112,3,'8.1.2.4','project1:virtual-network3',35123,14425,35678),(1421824460000000,'9.3.2.1','project2:virtual-network1',1,8712,4,'9.3.21.1','project3:virtual-network2',32213,54421,55332),(1431824360000000,'11.3.1.4','project1:virtual-network1',0,9115,5,'10.2.3.1','project2:virtual-network2',54134,23456,34567),(1461924360000000,'10.2.1.3','project1:virtual-network1',1,9117,6,'10.1.1.3','project2:virtual-network2',41322,15328,44000);
+INSERT INTO `traffic_flow` VALUES (1460492602222000,'5.4.2.1','project1:virtual-network1',0,9113,2,'4.2.1.4','project1:virtual-network3',43451,23422,77645),(1460492702222000,'6.4.2.2','project1:virtual-network2',1,4432,9,'88.34.2.1','project1:virtual-network1',55342,44532,76452),(1460492802222000,'10.2.1.4','project1:virtual-network2',0,8876,5,'76.33.2.3','project1:virtual-network3',45323,65632,22342),(1460492902222000,'10.5.2.1','project2:virtual-network2',1,5632,7,'72.3.2.1','project1:virtual-network4',54123,87323,45642),(1461921360000000,'11.3.1.4','project1:virtual-network1',0,9115,5,'10.2.3.1','project2:virtual-network2',54134,23456,34567),(1461922360000000,'9.3.2.1','project2:virtual-network1',1,8712,4,'9.3.21.1','project3:virtual-network2',32213,54421,55332),(1461924460000000,'10.2.1.3','project1:virtual-network1',1,9117,6,'10.1.1.3','project2:virtual-network2',41322,15328,44000),(1461925360000000,'12.1.1.2','project2:virtual-network2',1,9112,3,'8.1.2.4','project1:virtual-network3',35123,14425,35678);
 /*!40000 ALTER TABLE `traffic_flow` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-12 11:59:26
+-- Dump completed on 2016-04-12 13:29:17
