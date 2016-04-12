@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+            <link rel='stylesheet' href='/stylesheets/style.css' />
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
+            <script src="https://cdn.rawgit.com/zhaber/datetimepicker/master/datetimepicker.js"></script>
+            <link href="https://cdn.rawgit.com/zhaber/datetimepicker/master/datetimepicker.css" type="text/css" rel="stylesheet">
+            <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+            <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+            <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+            <script src = "../Angularjs/mainController.js"></script>
+</head>
+  <body ng-app = "QueryBuilder" ng-controller = "mainController">
+      
+      
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          TIME RANGE
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        
+      
+      <div class = "row">
+      
+        <div class = "col-md-5 col-md-offset-2">
+          
+        <h5>From Date</h5>  
+        </div>
+        <div class = "col-md-5">
+          
+        <h5>To Date</h5> 
+        </div>
+      
+      </div>
+      
+      <div class = "row">
+      <div class = "col-md-5 col-md-offset-2">
+          
+      <datetimepicker style = "display : inline-block"
+      min-date="minDate" 
+      hour-step="1" 
+      minute-step="1" ng-model="fromDate" show-meridian="showMeridian" 
+      date-format="dd-MMM-yyyy" date-options="dateOptions"
+      date-disabled="disabled(date, mode)" 
+      datepicker-append-to-body="false"
+      readonly-date="false"
+      hidden-time="false"
+      hidden-date="false" 
+      name="datetimepicker"
+      show-spinners="true"
+      readonly-time="false"
+      
+      >
+      <!-- Use date-ng-click="open($event, opened)" to override date ng-click -->
+      </datetimepicker>
+              
+      </div>
+      <!--p><b>To Date</b></p-->
+      <div class = "col-md-5">
+      <datetimepicker style = "display : inline-block"
+      min-date="minDate" 
+      hour-step="1" 
+      minute-step="1" ng-model="toDate" show-meridian="showMeridian" 
+      date-format="dd-MMM-yyyy" date-options="dateOptions"
+      date-disabled="disabled(date, mode)" 
+      datepicker-append-to-body="false"
+      readonly-date="false"
+      hidden-time="false"
+      hidden-date="false" 
+      name="datetimepicker"
+      show-spinners="true"
+      readonly-time="false"
+      >
+      </datetimepicker>
+      </div>
+      </div>   
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          SELECTION
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <div style="height: 100px;" class = "col-md-12">
+      
+      <div style = "display : inline-block; width : 200px;" ng-repeat = "field in columns" class="checkbox">
+          <label><input type="checkbox" ng-model = "val" ng-click = "clicked($index,val)" value="">{{field}}</label>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          WHERE CLAUSE
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <button type = "button" class = "btn btn-success" ng-click = "validateWhereClause(1)" value = "ADD MORE" style = "display : inline-block">ADD <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    
+    <div ng-repeat = "row in rows"> <!--div1 --><br> 
+    <div ng-show = "$index != 0" class="dropdown" style = "left : 170px">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{row.booleanOperator}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li ng-repeat="op in booleanOperators"><a ng-click="booleanOperatorSelect(row, op)">{{op}}</a></li>
+  </ul>
+</div><br>
+        
+    <div class="dropdown" style = "display : inline-block; width : 170px">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{row.column_name}}
+    <span class="caret"></span>
+  </button>
+ <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li ng-hide = "column == 'timestamp'" ng-repeat="column in columns"><label ng-click="columnSelect(row,column)">{{column}}</label></li>
+  </ul>
+</div>
+    <div class="dropdown" style = "display : inline-block; width : 120px">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+   {{row.operator}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+     <li ng-repeat="ro in relationalOperators"><a ng-click="relationalOperatorsSelect(row,ro)">{{ro}}</a></li>
+  </ul>
+</div>
+        <input ng-model = "row.value" type = "text" ng-model = "textValue" style = "display : inline-block"/>
+        <button class = "btn btn-danger" ng-click = "removeWhereClause($index)" >Remove <span class="glyphicon glyphicon-minus" aria-hidden="true"></button> 
+        </div><br>
+      </div>
+    </div>
+  </div>
+</div>
+ <div style = "width :  350px" ng-show = "errorMessage" class = "alert alert-danger">Please fill all the required fields in Where Clause</div>     
+      
+    <div style = "width : 300px" ng-show = "validateError.length != 0" class = "alert alert-danger">{{validateError}}</div><br>
+      <center><button type ="submit" ng-click = "validateAndSubmit()" class = "btn btn-primary">Fetch</button></center><br>
+      
+      <div ng-if="!refresh" id="grid1" ui-grid="{ data: gridData }" class="grid"></div>
+    
+  </body>
+      </html>
