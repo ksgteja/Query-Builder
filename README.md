@@ -11,7 +11,7 @@
 ### DB Setup
 1. Once MySQL is installed, create database with name querybuilder
    -                           **create database querybuilder**
-2. find SQL Scripts folder and click on querybuilder.sql which will import tables
+2. Find SQL Scripts folder and click on querybuilder.sql which will import tables
 3. You can change connection string of db for application in routes -> connections.js file
 
 ### Application Setup
@@ -32,6 +32,16 @@ Application was built using below frameworks
 - Grid UI
 - Bootstrap
 - Express.js
+
+##Screenshots
+*Main Screen*
+![alt tag](https://github.com/ksgteja/Query-Builder/blob/master/Images/mainpage.jpg)
+*Selecting columns to display*
+![alt tag](https://github.com/ksgteja/Query-Builder/blob/master/Images/selection_test2.JPG)
+*Adding Conditions*
+![alt tag](https://github.com/ksgteja/Query-Builder/blob/master/Images/WhereClause_test3.JPG)
+*Type and null Handling*
+![alt tag](https://github.com/ksgteja/Query-Builder/blob/master/Images/invalid_testcase5.JPG)
 
 ### Tools
 
