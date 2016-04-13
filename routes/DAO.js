@@ -11,22 +11,21 @@ connection.connect(function (err) {
 }
 
 exports.fetch = function(selection, rows, fromDate, toDate, callback){
-	var select = "SELECT";
-	  var from = "FROM";
-	  var tableName = "TRAFFIC_FLOW";
+	var select = "select";
+	  var from = "from";
+	  var tableName = "traffic_flow";
 	  var all = "*";
-	  var where = "WHERE";
-	  var between = "BETWEEN";
-	  var and = "AND";
-	  var or = "OR";
+	  var where = "where";
+	  var between = "between";
+	  var and = "and";
+	  var or = "or";
 	  var query = "";
-	  var timestamp = "TIMESTAMP";
-	  var between = "BETWEEN"
+	  var timestamp = "timestamp";
+	  var between = "between"
 	  
 	  if(selection.length == 0)
 		  query = select+" "+all+" "+from+" "+tableName+" "+where;
 	  else
-		  
 		  query = select+" "+selection.join()+" "+from+" "+tableName+" "+where;
 	  
 	  query = query+" "+timestamp+" "+between+" "+fromDate+" "+and+" "+toDate;
